@@ -59,6 +59,10 @@ distributed-systems-a1/
 
 ## System Design & Implementation
 
+This section serves as the Design & Explanation document required for the assignment, detailing the architecture, synchronous behavior, and technology choices of all three implementations.
+
+---
+
 This project adopts a classic client–server model, where all three implementations (Socket, REST, and gRPC) follow the same synchronous communication flow:
 
 ```
@@ -71,6 +75,8 @@ Client                          Server
   |                               |
   | 4. Continues execution        |
 ```
+
+---
 
 ### 1. Socket Implementation
 
