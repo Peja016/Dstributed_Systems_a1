@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [System Design & Implementation](#system-design-&-implementation)
+2. [System Design & Implementation](#system-design--implementation)
 3. [Instructions](#instructions)
 4. [Test Results](#test-results)
 5. [Performance Comparison](#performance-comparison)
