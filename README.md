@@ -643,6 +643,7 @@ gRPC Results:
 REST 100 calls took: 273.9055 ms
 gRPC 100 calls took: 40.5905 ms
 gRPC is 6.75x faster than REST
+```
 
 ---
 
@@ -671,10 +672,10 @@ In summary, while REST offers simplicity and broader compatibility, gRPC deliver
 ## Conclusion
 
 - All three implementations demonstrate **synchronous request-response behavior**.
-- **Sockets** offer low-level control and minimal latency.
-- **REST** provides simplicity and interoperability.
-- **gRPC** offers the best performance and scalability.
-- Docker ensures reproducibility across environments.
+- **REST** provides simplicity, human-readable communication, and broad compatibility across web technologies..
+- **gRPC** achieves significantly higher performance and lower latency due to its use of HTTP/2 and Protocol Buffers for binary serialization.
+- Benchmark results confirm that gRPC outperforms REST by over 6× in average response time and throughput.
+- Containerizing both services with Docker ensures consistent, reproducible testing environments across systems.
 
 ---
 
@@ -684,4 +685,3 @@ In summary, while REST offers simplicity and broader compatibility, gRPC deliver
 - Flask — https://flask.palletsprojects.com/
 - gRPC — https://grpc.io/docs/languages/python/quickstart/
 - Docker Compose — https://docs.docker.com/compose/
-```
