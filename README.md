@@ -637,7 +637,7 @@ gRPC Results:
   Max: 11.56 ms
   Standard deviation: 1.13 ms
   Total time: 40.59 ms
-  Throughput: ~2464.0 requests/sec
+  Throughput: 2464.0 requests/sec
   Errors: 0
 
 REST 100 calls took: 273.9055 ms
