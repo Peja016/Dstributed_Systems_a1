@@ -1,6 +1,5 @@
 import grpc, os
 from generated import user_service_pb2, user_service_pb2_grpc 
-from typing import Optional
 
 def handle_rpc_error(e: grpc.RpcError, context: str = ""):
     """

@@ -70,7 +70,12 @@ def serve():
     server.add_insecure_port('[::]:50051')
     server.start()
     print("gRPC server is running at port 50051")
-    server.wait_for_termination() 
+    try:
+        server.wait_for_termination()
+    except KeyboardInterrupt:
+        print("\nKeyboardInterrupt detected — shutting down gracefully...")
+        server.stop(0)  # terminate running
+        print("gRPC server stopped.")
 
 if __name__ == "__main__":
     serve()
