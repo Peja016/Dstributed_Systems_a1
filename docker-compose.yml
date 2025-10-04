@@ -1,0 +1,72 @@
+version: "3.8"
+
+services:
+  # 1. Socket Server Service
+  socket-server:
+    container_name: socket-server
+    image: socket-server-image
+    build:
+      context: ./python-socket-lab
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    command: python -u server.py
+
+  # 2. Socket Client Service
+  socket-client:
+    container_name: socket-client
+    image: socket-client-image
+    build:
+      context: ./python-socket-lab
+      dockerfile: Dockerfile
+    depends_on:
+      - socket-server
+    command: python client.py
+    environment:
+      - APP=socket-server
+    stdin_open: true
+    tty: true
+
+  # 3. REST API Service
+  rest-service:
+    container_name: rest-service
+    image: rest-service-image
+    build: ./python-rest-lab
+    ports:
+      - "5000:5000"
+
+  # 4. gRPC Service
+  grpc-server:
+    container_name: grpc-server
+    image: grpc-service-image
+    build: ./python_grpc_lab
+    ports:
+      - "50051:50051"
+    command: python -u server.py
+  grpc-client:
+    container_name: grpc-client
+    image: grpc-client-image
+    build:
+      context: ./python_grpc_lab
+    # Ensure the client starts after the server is fully ready
+    depends_on:
+      - grpc-server
+    command: python client.py
+    environment:
+      - APP=grpc-server:50051
+    # CRITICAL: This allows the client to see the output when running 'docker-compose up'
+    stdin_open: true
+    tty: true
+  benchmark:
+    container_name: benchmark
+    image: benchmark
+    build:
+      context: .
+      dockerfile: Dockerfile.benchmark
+    depends_on:
+      - rest-service
+      - grpc-server
+    environment:
+      - REST_HOST=rest-service
+      - GRPC_HOST=grpc-server
+    command: python benchmark.py

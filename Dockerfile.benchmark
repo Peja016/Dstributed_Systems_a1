@@ -1,0 +1,15 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY python-rest-lab/requirements.txt ./rest-requirements.txt
+COPY python_grpc_lab/requirements.txt ./grpc-requirements.txt
+
+RUN pip install --no-cache-dir \
+    -r rest-requirements.txt \
+    -r grpc-requirements.txt
+
+COPY benchmark.py .
+COPY python_grpc_lab ./python_grpc_lab
+
+CMD ["python", "benchmark.py"]
